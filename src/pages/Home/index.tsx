@@ -2,6 +2,7 @@ import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
 
 import imageHome from '../../assets/ImagemHome.svg'
 import {
+  CoffeeList,
   HomeContainer,
   HomeIntro,
   HomeIntroLeft,
@@ -9,6 +10,7 @@ import {
   IntroItems,
   Item,
 } from './styles'
+import { CoffeeCard } from '../../components/CoffeeCard'
 
 export function Home() {
   return (
@@ -53,6 +55,22 @@ export function Home() {
           <img src={imageHome} alt="" />
         </HomeIntroRight>
       </HomeIntro>
+      <CoffeeList>
+        <h1>Nossos cafés</h1>
+
+        <div>
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+          <CoffeeCard />
+        </div>
+      </CoffeeList>
     </HomeContainer>
   )
 }

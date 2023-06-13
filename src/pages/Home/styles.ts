@@ -1,17 +1,25 @@
 import styled from 'styled-components'
 
+import backgroundHome from '../../assets/backgroundHome.svg'
+
 export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
-
-  padding: 0 10rem;
 `
 
 export const HomeIntro = styled.div`
-  width: 100%;
-  height: 100vh;
+  background-image: url(${backgroundHome});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 8rem 0 8rem;
+  width: 100%;
+  height: 544px;
+  margin-top: 6.5rem;
 `
 
 export const HomeIntroLeft = styled.div`
@@ -19,7 +27,7 @@ export const HomeIntroLeft = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  h1 {
+  & > h1 {
     color: ${(props) => props.theme['gray-900']};
     font-family: 'Baloo 2', sans-serif;
     font-weight: 800;
@@ -72,4 +80,27 @@ export const Item = styled.div`
   }
 `
 
-export const HomeIntroRight = styled.div``
+export const HomeIntroRight = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`
+
+export const CoffeeList = styled.div`
+  margin-top: 1rem;
+  padding: 0 8rem 0 8rem;
+  & > h1 {
+    color: ${(props) => props.theme['gray-800']};
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  & > div {
+    margin-top: 3.375rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+  }
+`

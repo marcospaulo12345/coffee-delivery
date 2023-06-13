@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   background: ${(props) => props.theme['gray-100']};
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 10rem;
+  padding: 2rem 8rem 2rem 8rem;
 `
 
 export const Actions = styled.div`
