@@ -20,12 +20,17 @@ export const HomeIntro = styled.div`
   width: 100%;
   height: 544px;
   margin-top: 6.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0 2rem 0 2rem;
+  }
 `
 
 export const HomeIntroLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 36.75rem;
 
   & > h1 {
     color: ${(props) => props.theme['gray-900']};
@@ -102,5 +107,9 @@ export const CoffeeList = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 2rem 0 2rem;
   }
 `

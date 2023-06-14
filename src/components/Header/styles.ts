@@ -8,6 +8,9 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 8rem 2rem 8rem;
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `
 
 export const Actions = styled.div`

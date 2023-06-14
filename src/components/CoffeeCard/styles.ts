@@ -73,8 +73,8 @@ export const CoffeeCardContainer = styled.section`
     button {
       background: ${(props) => props.theme['purple-300']};
       border: none;
-      width: 38px;
-      height: 38px;
+      width: 2.375rem;
+      height: 2.375rem;
       color: ${(props) => props.theme['gray-100']};
       border-radius: 6px;
       display: flex;
