@@ -12,6 +12,8 @@ import {
 } from './styles'
 import { CoffeeCard } from '../../components/CoffeeCard'
 
+import { coffees } from '../../utils/listCoffees'
+
 export function Home() {
   return (
     <HomeContainer>
@@ -59,16 +61,9 @@ export function Home() {
         <h1>Nossos cafés</h1>
 
         <div>
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
-          <CoffeeCard />
+          {coffees.map((coffee) => {
+            return <CoffeeCard key={coffee.id} coffee={coffee} />
+          })}
         </div>
       </CoffeeList>
     </HomeContainer>
