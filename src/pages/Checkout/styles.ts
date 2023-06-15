@@ -208,7 +208,19 @@ export const InfoPayment = styled.div`
   display: flex;
   justify-content: space-between;
 
+  ul:last-child {
+    text-align: end;
+  }
+
   li {
     list-style-type: none;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+
+  li:last-child {
+    font-size: 1.25rem;
+    font-weight: bold;
   }
 `
