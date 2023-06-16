@@ -14,7 +14,7 @@ export function Header() {
           Itainópolis, PI
         </div>
 
-        <NavLink to="/">
+        <NavLink to="/checkout">
           <ShoppingCart size={22} weight="fill" />
         </NavLink>
       </Actions>

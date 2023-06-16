@@ -32,6 +32,7 @@ export const FieldsetsAddress = styled.fieldset`
     display: flex;
     gap: 1rem;
     input {
+      width: 100%;
       height: 2.625rem;
       border: 1px solid ${(props) => props.theme['gray-400']};
       border-radius: 4px;
@@ -41,6 +42,24 @@ export const FieldsetsAddress = styled.fieldset`
       font-size: 0.875rem;
       line-height: 1.3;
       padding: 0.5rem;
+    }
+  }
+
+  fieldset:nth-child(2) {
+    & > input {
+      width: 40%;
+    }
+  }
+
+  fieldset:nth-child(4) {
+    input:first-child {
+      width: 70%;
+    }
+  }
+
+  fieldset:nth-child(5) {
+    input:last-child {
+      width: 30%;
     }
   }
 `

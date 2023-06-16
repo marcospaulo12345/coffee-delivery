@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import {
   Bank,
   CreditCard,
@@ -19,9 +20,15 @@ import {
   TitleFieldset,
 } from './styles'
 
-import imageCoffee from '../../../../assets/coffee.svg'
+import { CartContext } from '../../../../Context/CartContext'
 
 export function CheckoutForm() {
+  const { items, removeItem } = useContext(CartContext)
+
+  function handleRemoveItemToCart(idCoffee: number) {
+    removeItem(idCoffee)
+  }
+
   return (
     <CheckoutFormContainer action="">
       <CheckoutFormLeft>
@@ -89,35 +96,28 @@ export function CheckoutForm() {
         <h1>Cafés selecionados</h1>
         <SelectedCoffeesContainer>
           <ListSelectedCoffees>
-            <SelectedCoffee>
-              <img src={imageCoffee} alt="" />
-              <div>
-                <h3>Expresso Tradicional</h3>
-                <div>
-                  <input type="number" placeholder="1" />
-                  <button>
-                    <Trash size={16} weight="light" />
-                    <span>Remover</span>
-                  </button>
-                </div>
-              </div>
-              <span>R$ 9,90</span>
-            </SelectedCoffee>
-
-            <SelectedCoffee>
-              <img src={imageCoffee} alt="" />
-              <div>
-                <h3>Expresso Tradicional</h3>
-                <div>
-                  <input type="number" placeholder="1" />
-                  <button>
-                    <Trash size={16} weight="light" />
-                    <span>Remover</span>
-                  </button>
-                </div>
-              </div>
-              <span>R$ 9,90</span>
-            </SelectedCoffee>
+            {items.map((item) => {
+              return (
+                <SelectedCoffee key={item.product.coffee.id}>
+                  <img src={item.product.coffee.image} alt="" />
+                  <div>
+                    <h3>{item.product.coffee.name}</h3>
+                    <div>
+                      <input type="number" placeholder="1" value={item.qtd} />
+                      <button
+                        onClick={() =>
+                          handleRemoveItemToCart(item.product.coffee.id)
+                        }
+                      >
+                        <Trash size={16} weight="light" />
+                        <span>Remover</span>
+                      </button>
+                    </div>
+                  </div>
+                  <span>{item.product.coffee.price}</span>
+                </SelectedCoffee>
+              )
+            })}
           </ListSelectedCoffees>
 
           <InfoPayment>
