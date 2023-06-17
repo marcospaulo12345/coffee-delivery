@@ -1,18 +1,34 @@
-import { useContext } from 'react'
+import { ChangeEvent, useContext, useState, FormEvent } from 'react'
 import { ShoppingCart } from 'phosphor-react'
-import { Actions, CoffeeCardContainer, Tags } from './styles'
+import { FormActions, CoffeeCardContainer, Tags } from './styles'
 import { CoffeeType } from '../../utils/listCoffees'
 import { CartContext } from '../../Context/CartContext'
+import { toast } from 'react-toastify'
 
 interface CoffeeCardProps {
   coffee: CoffeeType
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const [quantity, setQuantity] = useState<number>(1)
+
+  const notify = (status: number, mensage: string) => {
+    if (status === 200) {
+      toast.success(mensage)
+    } else if (status === 400) {
+      toast.error(mensage)
+    }
+  }
   const { addNewItem } = useContext(CartContext)
 
-  function handleAddNewItemInCart() {
-    addNewItem(coffee, 2)
+  function handleAddNewItemInCart(event: FormEvent) {
+    event.preventDefault()
+    addNewItem(coffee, quantity)
+    notify(200, 'Item adicionado no carrinho')
+  }
+
+  function handleQuantityChange(event: ChangeEvent<HTMLInputElement>) {
+    setQuantity(Number(event.target.value))
   }
 
   return (
@@ -26,15 +42,21 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       </Tags>
       <h1>{coffee.name}</h1>
       <p>{coffee.description}</p>
-      <Actions>
+      <FormActions onSubmit={handleAddNewItemInCart}>
         <span>
           R$ <strong>{coffee.price}</strong>
         </span>
-        <input type="number" />
-        <button onClick={handleAddNewItemInCart}>
+        <input
+          type="number"
+          onChange={handleQuantityChange}
+          min={1}
+          value={quantity}
+          required
+        />
+        <button type="submit">
           <ShoppingCart size={22} weight="fill" />
         </button>
-      </Actions>
+      </FormActions>
     </CoffeeCardContainer>
   )
 }

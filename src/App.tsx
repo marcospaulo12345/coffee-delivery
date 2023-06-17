@@ -4,6 +4,8 @@ import { GlobalStyle } from './styles/global'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
 import { CartContextProvider } from './Context/CartContext'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <CartContextProvider>
           <Router />
         </CartContextProvider>
+        <ToastContainer />
       </BrowserRouter>
       <GlobalStyle />
     </ThemeProvider>

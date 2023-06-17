@@ -49,7 +49,7 @@ export const Tags = styled.div`
   }
 `
 
-export const Actions = styled.div`
+export const FormActions = styled.form`
   width: 100%;
   display: flex;
   align-items: center;
@@ -76,6 +76,7 @@ export const Actions = styled.div`
     border: none;
     background: ${(props) => props.theme['gray-400']};
     border-radius: 6px;
+    padding: 1rem;
   }
 
   button {
