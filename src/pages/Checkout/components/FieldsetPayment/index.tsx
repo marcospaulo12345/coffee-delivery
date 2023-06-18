@@ -1,9 +1,13 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 import { FieldsetPaymentContainer, TitleFieldset } from './styles'
 import { useFormContext } from 'react-hook-form'
+import { NewCheckoutFormData } from '../..'
 
 export function FieldsetPayment() {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<NewCheckoutFormData>()
   return (
     <FieldsetPaymentContainer>
       <TitleFieldset>
@@ -17,24 +21,35 @@ export function FieldsetPayment() {
       </TitleFieldset>
 
       <fieldset>
-        <input type="radio" id="creditCard" {...register('payment')} />
+        <input
+          type="radio"
+          id="creditCard"
+          value="creditCard"
+          {...register('payment')}
+        />
         <label htmlFor="creditCard">
           <CreditCard size={16} weight="light" />
           <span>Cartão de crédito</span>
         </label>
 
-        <input type="radio" id="debitCard" {...register('payment')} />
+        <input
+          type="radio"
+          id="debitCard"
+          value="debitCard"
+          {...register('payment')}
+        />
         <label htmlFor="debitCard">
           <Bank size={16} weight="light" />
           <span>Cartão de débito</span>
         </label>
 
-        <input type="radio" id="money" {...register('payment')} />
+        <input type="radio" id="money" value="money" {...register('payment')} />
         <label htmlFor="money">
           <Money size={16} weight="light" />
           <span>Dinheiro</span>
         </label>
       </fieldset>
+      {errors.payment && <span>{errors.payment.message}</span>}
     </FieldsetPaymentContainer>
   )
 }

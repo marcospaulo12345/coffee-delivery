@@ -12,6 +12,7 @@ interface CartContextType {
   items: ItemsType[]
   addNewItem: (newItem: CoffeeType, qtd: number) => void
   removeItem: (idCoffee: number) => void
+  changeQtd: (coffeeId: number, newQtd: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -29,6 +30,22 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     })
   }
 
+  function changeQtd(coffeeId: number, newQtd: number) {
+    if (newQtd === 0) {
+      removeItem(coffeeId)
+    } else {
+      setItems(
+        items.map((item) => {
+          if (item.product.coffee.id === coffeeId) {
+            return { ...item, qtd: newQtd }
+          } else {
+            return item
+          }
+        }),
+      )
+    }
+  }
+
   function removeItem(idCoffee: number) {
     setItems((state) => {
       return state.filter((item) => item.product.coffee.id !== idCoffee)
@@ -36,7 +53,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   return (
-    <CartContext.Provider value={{ items, addNewItem, removeItem }}>
+    <CartContext.Provider value={{ items, addNewItem, removeItem, changeQtd }}>
       {children}
     </CartContext.Provider>
   )

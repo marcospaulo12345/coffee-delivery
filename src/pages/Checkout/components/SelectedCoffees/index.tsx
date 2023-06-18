@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, ChangeEvent } from 'react'
 import { Trash } from 'phosphor-react'
 import {
   InfoPayment,
@@ -9,7 +9,7 @@ import {
 import { CartContext } from '../../../../Context/CartContext'
 
 export function SelectedCoffees() {
-  const { items, removeItem } = useContext(CartContext)
+  const { items, removeItem, changeQtd } = useContext(CartContext)
 
   const totalItems = items.reduce(
     (acc, item) => acc + item.product.coffee.price * item.qtd,
@@ -22,6 +22,13 @@ export function SelectedCoffees() {
     removeItem(idCoffee)
   }
 
+  function handleChangeQtd(
+    coffeeId: number,
+    event: ChangeEvent<HTMLInputElement>,
+  ) {
+    changeQtd(coffeeId, Number(event.target.value))
+  }
+
   return (
     <SelectedCoffeesContainer>
       <ListSelectedCoffees>
@@ -32,7 +39,14 @@ export function SelectedCoffees() {
               <div>
                 <h3>{item.product.coffee.name}</h3>
                 <div>
-                  <input type="number" placeholder="1" value={item.qtd} />
+                  <input
+                    type="number"
+                    placeholder="1"
+                    value={item.qtd}
+                    onChange={(event) =>
+                      handleChangeQtd(item.product.coffee.id, event)
+                    }
+                  />
                   <button
                     onClick={() =>
                       handleRemoveItemToCart(item.product.coffee.id)

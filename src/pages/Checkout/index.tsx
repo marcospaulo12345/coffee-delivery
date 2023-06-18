@@ -12,25 +12,45 @@ import { SelectedCoffees } from './components/SelectedCoffees'
 import * as zod from 'zod'
 
 const newCheckoutFormValidationSchema = zod.object({
-  cep: zod.string(),
-  street: zod.string(),
-  house_number: zod.string(),
+  cep: zod.string().min(1, 'Esse campo é obrigatório!'),
+  street: zod.string().min(1, 'Esse campo é obrigatório!'),
+  house_number: zod
+    .string()
+    .refine((value) => value === 's/n' || /^\d+$/.test(value), {
+      message: 'O número da casa deve ser um número ou "s/n".',
+    }),
   complement: zod.string(),
-  neighborhood: zod.string(),
-  city: zod.string(),
-  state_of_country: zod.string(),
+  neighborhood: zod.string().min(1, 'Informe o bairro!'),
+  city: zod.string().min(1, 'Informe a cidade!'),
+  state_of_country: zod
+    .string()
+    .min(2, 'Informe a sigla do estado!')
+    .max(2, 'Informe apenas as duas letras referente ao estado'),
+  payment: zod.string().min(1, 'Selecione a forma de pagamento!'),
 })
 
-type NewCheckoutFormData = zod.infer<typeof newCheckoutFormValidationSchema>
+export type NewCheckoutFormData = zod.infer<
+  typeof newCheckoutFormValidationSchema
+>
 
 export function Checkout() {
   const newCheckoutForm = useForm<NewCheckoutFormData>({
     resolver: zodResolver(newCheckoutFormValidationSchema),
+    defaultValues: {
+      cep: '',
+      street: '',
+      house_number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state_of_country: '',
+      payment: '',
+    },
   })
 
   const { handleSubmit } = newCheckoutForm
 
-  function handlePlaceOrder(data: any) {
+  function handlePlaceOrder(data: NewCheckoutFormData) {
     console.log(data)
   }
 
