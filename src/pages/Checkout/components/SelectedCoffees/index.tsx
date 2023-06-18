@@ -7,6 +7,7 @@ import {
   SelectedCoffeesContainer,
 } from './styles'
 import { CartContext } from '../../../../Context/CartContext'
+import { formatterPriceWithSign } from '../../../../utils/formatter'
 
 export function SelectedCoffees() {
   const { items, removeItem, changeQtd } = useContext(CartContext)
@@ -57,7 +58,9 @@ export function SelectedCoffees() {
                   </button>
                 </div>
               </div>
-              <span>{item.product.coffee.price}</span>
+              <span>
+                {formatterPriceWithSign.format(item.product.coffee.price)}
+              </span>
             </SelectedCoffee>
           )
         })}
@@ -71,9 +74,9 @@ export function SelectedCoffees() {
         </ul>
 
         <ul>
-          <li>{totalItems}</li>
-          <li>{deliveryValue}</li>
-          <li>{total}</li>
+          <li>{formatterPriceWithSign.format(totalItems)}</li>
+          <li>{formatterPriceWithSign.format(deliveryValue)}</li>
+          <li>{formatterPriceWithSign.format(total)}</li>
         </ul>
       </InfoPayment>
       <button>confirmar pedido</button>

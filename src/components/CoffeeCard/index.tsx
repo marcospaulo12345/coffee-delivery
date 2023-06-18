@@ -4,6 +4,7 @@ import { FormActions, CoffeeCardContainer, Tags } from './styles'
 import { CoffeeType } from '../../utils/listCoffees'
 import { CartContext } from '../../Context/CartContext'
 import { toast } from 'react-toastify'
+import { formatterPrice } from '../../utils/formatter'
 
 interface CoffeeCardProps {
   coffee: CoffeeType
@@ -44,7 +45,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       <p>{coffee.description}</p>
       <FormActions onSubmit={handleAddNewItemInCart}>
         <span>
-          R$ <strong>{coffee.price}</strong>
+          R$ <strong>{formatterPrice.format(coffee.price)}</strong>
         </span>
         <input
           type="number"
