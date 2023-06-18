@@ -2,6 +2,7 @@ import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 import { FieldsetPaymentContainer, TitleFieldset } from './styles'
 import { useFormContext } from 'react-hook-form'
 import { NewCheckoutFormData } from '../..'
+import { MessageErroInput } from '../../styles'
 
 export function FieldsetPayment() {
   const {
@@ -49,7 +50,9 @@ export function FieldsetPayment() {
           <span>Dinheiro</span>
         </label>
       </fieldset>
-      {errors.payment && <span>{errors.payment.message}</span>}
+      {errors.payment && (
+        <MessageErroInput>{errors.payment.message}</MessageErroInput>
+      )}
     </FieldsetPaymentContainer>
   )
 }

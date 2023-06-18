@@ -5,11 +5,15 @@ import {
   CheckoutFormContainer,
   CheckoutFormLeft,
   CheckoutFormRight,
+  EmptyItems,
 } from './styles'
 import { FieldsetsAddress } from './components/FieldsetAddress'
 import { FieldsetPayment } from './components/FieldsetPayment'
 import { SelectedCoffees } from './components/SelectedCoffees'
 import * as zod from 'zod'
+import { useContext } from 'react'
+import { CartContext } from '../../Context/CartContext'
+import { useNavigate } from 'react-router-dom'
 
 const newCheckoutFormValidationSchema = zod.object({
   cep: zod.string().min(1, 'Esse campo é obrigatório!'),
@@ -34,6 +38,7 @@ export type NewCheckoutFormData = zod.infer<
 >
 
 export function Checkout() {
+  const { items, confirmOrder } = useContext(CartContext)
   const newCheckoutForm = useForm<NewCheckoutFormData>({
     resolver: zodResolver(newCheckoutFormValidationSchema),
     defaultValues: {
@@ -50,28 +55,45 @@ export function Checkout() {
 
   const { handleSubmit } = newCheckoutForm
 
-  function handlePlaceOrder(data: NewCheckoutFormData) {
-    console.log(data)
+  const navigate = useNavigate()
+
+  function handlePlaceOrder(orderData: NewCheckoutFormData) {
+    confirmOrder(orderData)
+
+    navigate('/success', {
+      state: orderData,
+    })
   }
 
   return (
     <CheckoutContainer>
-      <CheckoutFormContainer onSubmit={handleSubmit(handlePlaceOrder)}>
-        <FormProvider {...newCheckoutForm}>
-          <CheckoutFormLeft>
-            <h1>Complete seu pedido</h1>
-            <FieldsetsAddress />
+      {items.length !== 0 ? (
+        <CheckoutFormContainer onSubmit={handleSubmit(handlePlaceOrder)}>
+          <FormProvider {...newCheckoutForm}>
+            <CheckoutFormLeft>
+              <h1>Complete seu pedido</h1>
+              <FieldsetsAddress />
 
-            <FieldsetPayment />
-          </CheckoutFormLeft>
+              <FieldsetPayment />
+            </CheckoutFormLeft>
 
-          <CheckoutFormRight>
-            <h1>Cafés selecionados</h1>
+            <CheckoutFormRight>
+              <h1>Cafés selecionados</h1>
 
-            <SelectedCoffees />
-          </CheckoutFormRight>
-        </FormProvider>
-      </CheckoutFormContainer>
+              <SelectedCoffees />
+            </CheckoutFormRight>
+          </FormProvider>
+        </CheckoutFormContainer>
+      ) : (
+        <EmptyItems>
+          <h1>☹ Carrinho de compras vazio!</h1>
+          <p>
+            Lembre-se: cada café adicionado é uma oportunidade de experimentar
+            algo novo e delicioso. Vamos começar? Adicione um café ao seu
+            carrinho agora mesmo!
+          </p>
+        </EmptyItems>
+      )}
     </CheckoutContainer>
   )
 }

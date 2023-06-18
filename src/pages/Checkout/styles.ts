@@ -37,3 +37,22 @@ export const CheckoutFormRight = styled.fieldset`
     color: ${(props) => props.theme['gray-800']};
   }
 `
+
+export const MessageErroInput = styled.span`
+  font-size: 0.9rem;
+  color: #d70612;
+`
+
+export const EmptyItems = styled.div`
+  h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2rem;
+    color: ${(props) => props.theme['yellow-300']};
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+`

@@ -55,7 +55,7 @@ const ICON_BACKGROUND = {
 } as const
 
 interface IconContainerProps {
-  backgroundIcon: keyof typeof ICON_BACKGROUND
+  variant: keyof typeof ICON_BACKGROUND
 }
 
 export const IconContainer = styled.div<IconContainerProps>`
@@ -68,7 +68,7 @@ export const IconContainer = styled.div<IconContainerProps>`
   border-radius: 999px;
   color: ${(props) => props.theme.white};
 
-  background: ${(props) => props.theme[ICON_BACKGROUND[props.backgroundIcon]]};
+  background: ${(props) => props.theme[ICON_BACKGROUND[props.variant]]};
 `
 
 export const CardContainer = styled.div`

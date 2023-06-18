@@ -2,6 +2,7 @@ import { MapPinLine } from 'phosphor-react'
 import { FieldsetsAddressContainer, TitleFieldset } from './styles'
 import { useFormContext } from 'react-hook-form'
 import { NewCheckoutFormData } from '../..'
+import { MessageErroInput } from '../../styles'
 
 export function FieldsetsAddress() {
   const {
@@ -21,11 +22,13 @@ export function FieldsetsAddress() {
       <fieldset>
         <input type="text" placeholder="CEP" {...register('cep')} />
       </fieldset>
-      {errors.cep && <span>{errors.cep.message}</span>}
+      {errors.cep && <MessageErroInput>{errors.cep.message}</MessageErroInput>}
       <fieldset>
         <input type="text" placeholder="Rua" {...register('street')} />
       </fieldset>
-      {errors.street && <span>{errors.street.message}</span>}
+      {errors.street && (
+        <MessageErroInput>{errors.street.message}</MessageErroInput>
+      )}
       <fieldset>
         <input type="text" placeholder="Número" {...register('house_number')} />
         <input
@@ -34,17 +37,23 @@ export function FieldsetsAddress() {
           {...register('complement')}
         />
       </fieldset>
-      {errors.house_number && <span>{errors.house_number.message}</span>}
+      {errors.house_number && (
+        <MessageErroInput>{errors.house_number.message}</MessageErroInput>
+      )}
 
       <fieldset>
         <input type="text" placeholder="Bairro" {...register('neighborhood')} />
         <input type="text" placeholder="Cidade" {...register('city')} />
         <input type="text" placeholder="UF" {...register('state_of_country')} />
       </fieldset>
-      {errors.neighborhood && <span>{errors.neighborhood.message}</span>}
-      {errors.city && <span>{errors.city.message}</span>}
+      {errors.neighborhood && (
+        <MessageErroInput>{errors.neighborhood.message}</MessageErroInput>
+      )}
+      {errors.city && (
+        <MessageErroInput>{errors.city.message}</MessageErroInput>
+      )}
       {errors.state_of_country && (
-        <span>{errors.state_of_country.message}</span>
+        <MessageErroInput>{errors.state_of_country.message}</MessageErroInput>
       )}
     </FieldsetsAddressContainer>
   )

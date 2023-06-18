@@ -9,8 +9,27 @@ import {
 
 import ImageIllustration from '../../assets/illustration.svg'
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { NewCheckoutFormData } from '../Checkout'
+import { useEffect } from 'react'
+
+interface LocationType {
+  state: NewCheckoutFormData
+}
 
 export function Success() {
+  const { state } = useLocation() as LocationType
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  }, [])
+
+  if (!state) return <></>
+
   return (
     <SuccessContainer>
       <h1>Uhu! Pedido confirmado</h1>
@@ -19,19 +38,24 @@ export function Success() {
       <SuccessContent>
         <OrderInformation>
           <OrderInformationCard>
-            <IconContainer backgroundIcon="purple">
+            <IconContainer variant="purple">
               <MapPin size={16} weight="fill" />
             </IconContainer>
             <CardContainer>
               <span>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{' '}
+                <strong>
+                  {state.street}, {state.house_number}
+                </strong>
               </span>
-              <span>Farrapos - Porto Alegre, RS</span>
+              <span>
+                {state.neighborhood} - {state.city}, {state.state_of_country}
+              </span>
             </CardContainer>
           </OrderInformationCard>
 
           <OrderInformationCard>
-            <IconContainer backgroundIcon="yellow">
+            <IconContainer variant="yellow">
               <Timer size={16} weight="fill" />
             </IconContainer>
             <CardContainer>
@@ -43,7 +67,7 @@ export function Success() {
           </OrderInformationCard>
 
           <OrderInformationCard>
-            <IconContainer backgroundIcon="yellow_dark">
+            <IconContainer variant="yellow_dark">
               <CurrencyDollar size={16} weight="regular" />
             </IconContainer>
             <CardContainer>

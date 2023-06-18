@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useState } from 'react'
 import { CoffeeType } from '../utils/listCoffees'
+import { NewCheckoutFormData } from '../pages/Checkout'
 
 interface ItemsType {
   product: {
@@ -13,6 +14,7 @@ interface CartContextType {
   addNewItem: (newItem: CoffeeType, qtd: number) => void
   removeItem: (idCoffee: number) => void
   changeQtd: (coffeeId: number, newQtd: number) => void
+  confirmOrder: (orderData: NewCheckoutFormData) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -52,8 +54,17 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     })
   }
 
+  function confirmOrder(orderData: NewCheckoutFormData) {
+    console.log(orderData)
+    console.log(items)
+
+    setItems([])
+  }
+
   return (
-    <CartContext.Provider value={{ items, addNewItem, removeItem, changeQtd }}>
+    <CartContext.Provider
+      value={{ items, addNewItem, removeItem, changeQtd, confirmOrder }}
+    >
       {children}
     </CartContext.Provider>
   )
