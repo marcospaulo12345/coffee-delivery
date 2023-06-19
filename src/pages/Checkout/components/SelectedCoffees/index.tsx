@@ -27,7 +27,13 @@ export function SelectedCoffees() {
     coffeeId: number,
     event: ChangeEvent<HTMLInputElement>,
   ) {
-    changeQtd(coffeeId, Number(event.target.value))
+    const qtd = Number(event.target.value)
+    if (qtd === 0) {
+      console.log('sdjfoj')
+      removeItem(coffeeId)
+    } else {
+      changeQtd(coffeeId, qtd)
+    }
   }
 
   return (

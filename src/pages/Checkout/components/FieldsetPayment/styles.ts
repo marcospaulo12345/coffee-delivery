@@ -11,6 +11,7 @@ export const FieldsetPaymentContainer = styled.fieldset`
 
     & > input {
       -webkit-appearance: none;
+      box-shadow: 0 0 0 0;
     }
 
     & > input:checked + label {

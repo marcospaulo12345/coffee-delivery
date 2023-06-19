@@ -1,13 +1,14 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { CoffeeType } from '../utils/listCoffees'
 import { NewCheckoutFormData } from '../pages/Checkout'
-
-interface ItemsType {
-  product: {
-    coffee: CoffeeType
-  }
-  qtd: number
-}
+import { itemsCartReducer, ItemsType } from '../reducers/itemsCart/reducer'
+import {
+  ActionTypes,
+  addNewItemAction,
+  changeQtdAction,
+  confirmOrderAction,
+  removeItemAction,
+} from '../reducers/itemsCart/actions'
 
 interface CartContextType {
   items: ItemsType[]
@@ -24,41 +25,49 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [items, setItems] = useState<ItemsType[]>([])
+  const [itemsState, dispatch] = useReducer(
+    itemsCartReducer,
+    {
+      items: [],
+    },
+    (initialState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@coffee-delivery:items-cart-state-1.0.0',
+      )
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+
+      return initialState
+    },
+  )
+
+  const { items } = itemsState
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(itemsState)
+
+    localStorage.setItem('@coffee-delivery:items-cart-state-1.0.0', stateJSON)
+  }, [itemsState])
 
   function addNewItem(newItem: CoffeeType, qtd: number) {
-    setItems((state) => {
-      return [...state, { product: { coffee: newItem }, qtd }]
-    })
+    dispatch(addNewItemAction(newItem, qtd))
   }
 
   function changeQtd(coffeeId: number, newQtd: number) {
-    if (newQtd === 0) {
-      removeItem(coffeeId)
-    } else {
-      setItems(
-        items.map((item) => {
-          if (item.product.coffee.id === coffeeId) {
-            return { ...item, qtd: newQtd }
-          } else {
-            return item
-          }
-        }),
-      )
-    }
+    dispatch(changeQtdAction(coffeeId, newQtd))
   }
 
   function removeItem(idCoffee: number) {
-    setItems((state) => {
-      return state.filter((item) => item.product.coffee.id !== idCoffee)
-    })
+    dispatch(removeItemAction(idCoffee))
   }
 
   function confirmOrder(orderData: NewCheckoutFormData) {
     console.log(orderData)
     console.log(items)
-
-    setItems([])
+    // setItems([])
+    dispatch(confirmOrderAction(orderData))
   }
 
   return (
