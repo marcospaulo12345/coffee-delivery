@@ -70,14 +70,14 @@ export const FormActions = styled.form`
     }
   }
 
-  input {
+  /* input {
     width: 72px;
     height: 38px;
     border: none;
     background: ${(props) => props.theme['gray-400']};
     border-radius: 6px;
     padding: 1rem;
-  }
+  } */
 
   button {
     background: ${(props) => props.theme['purple-300']};

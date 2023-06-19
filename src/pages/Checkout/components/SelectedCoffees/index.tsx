@@ -1,16 +1,15 @@
-import { useContext, ChangeEvent } from 'react'
-import { Trash } from 'phosphor-react'
+import { useContext } from 'react'
 import {
   InfoPayment,
   ListSelectedCoffees,
-  SelectedCoffee,
   SelectedCoffeesContainer,
 } from './styles'
 import { CartContext } from '../../../../Context/CartContext'
 import { formatterPriceWithSign } from '../../../../utils/formatter'
+import { CoffeeCardCart } from './CoffeeCardCart'
 
 export function SelectedCoffees() {
-  const { items, removeItem, changeQtd } = useContext(CartContext)
+  const { items } = useContext(CartContext)
 
   const totalItems = items.reduce(
     (acc, item) => acc + item.product.coffee.price * item.qtd,
@@ -19,56 +18,11 @@ export function SelectedCoffees() {
   const deliveryValue = 3.5
   const total = totalItems + deliveryValue
 
-  function handleRemoveItemToCart(idCoffee: number) {
-    removeItem(idCoffee)
-  }
-
-  function handleChangeQtd(
-    coffeeId: number,
-    event: ChangeEvent<HTMLInputElement>,
-  ) {
-    const qtd = Number(event.target.value)
-    if (qtd === 0) {
-      console.log('sdjfoj')
-      removeItem(coffeeId)
-    } else {
-      changeQtd(coffeeId, qtd)
-    }
-  }
-
   return (
     <SelectedCoffeesContainer>
       <ListSelectedCoffees>
         {items.map((item) => {
-          return (
-            <SelectedCoffee key={item.product.coffee.id}>
-              <img src={item.product.coffee.image} alt="" />
-              <div>
-                <h3>{item.product.coffee.name}</h3>
-                <div>
-                  <input
-                    type="number"
-                    placeholder="1"
-                    value={item.qtd}
-                    onChange={(event) =>
-                      handleChangeQtd(item.product.coffee.id, event)
-                    }
-                  />
-                  <button
-                    onClick={() =>
-                      handleRemoveItemToCart(item.product.coffee.id)
-                    }
-                  >
-                    <Trash size={16} weight="light" />
-                    <span>Remover</span>
-                  </button>
-                </div>
-              </div>
-              <span>
-                {formatterPriceWithSign.format(item.product.coffee.price)}
-              </span>
-            </SelectedCoffee>
-          )
+          return <CoffeeCardCart key={item.product.coffee.id} item={item} />
         })}
       </ListSelectedCoffees>
 

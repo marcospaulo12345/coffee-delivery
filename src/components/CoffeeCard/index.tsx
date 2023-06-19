@@ -5,6 +5,7 @@ import { CoffeeType } from '../../utils/listCoffees'
 import { CartContext } from '../../Context/CartContext'
 import { toast } from 'react-toastify'
 import { formatterPrice } from '../../utils/formatter'
+import { InputQuantity } from '../InputQuantity'
 
 interface CoffeeCardProps {
   coffee: CoffeeType
@@ -28,8 +29,18 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     notify(200, 'Item adicionado no carrinho')
   }
 
-  function handleQuantityChange(event: ChangeEvent<HTMLInputElement>) {
-    setQuantity(Number(event.target.value))
+  function handleIncrease() {
+    setQuantity((quantity) => quantity + 1)
+  }
+
+  function handleDecrease() {
+    setQuantity((quantity) => {
+      if (quantity > 1) {
+        return quantity - 1
+      }
+
+      return quantity
+    })
   }
 
   return (
@@ -47,12 +58,18 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
         <span>
           R$ <strong>{formatterPrice.format(coffee.price)}</strong>
         </span>
-        <input
+        {/* <input
           type="number"
           onChange={handleQuantityChange}
           min={1}
           value={quantity}
           required
+        /> */}
+        <InputQuantity
+          handleIncrease={handleIncrease}
+          handleDecrease={handleDecrease}
+          quantity={quantity}
+          size="medium"
         />
         <button type="submit">
           <ShoppingCart size={22} weight="fill" />

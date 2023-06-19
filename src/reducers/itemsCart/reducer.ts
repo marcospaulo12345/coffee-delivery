@@ -32,7 +32,9 @@ export function itemsCartReducer(state: ItemsState, action: any) {
       }
 
       return produce(state, (draft) => {
-        draft.items[itemToChangeIndex].qtd = action.payload.newQtd
+        const item = draft.items[itemToChangeIndex]
+        item.qtd =
+          action.payload.type === 'increase' ? item.qtd + 1 : item.qtd - 1
       })
     }
     case ActionTypes.REMOVE_ITEM:

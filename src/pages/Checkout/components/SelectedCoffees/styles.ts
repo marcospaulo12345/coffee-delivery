@@ -62,14 +62,14 @@ export const SelectedCoffee = styled.div`
     gap: 0.5rem;
   }
 
-  div > input {
+  /* div > input {
     width: 72px;
     height: 32px;
     border: 0;
     border-radius: 6px;
     background: ${(props) => props.theme['gray-400']};
     padding: 0.5rem;
-  }
+  } */
 
   div > button {
     border: none;

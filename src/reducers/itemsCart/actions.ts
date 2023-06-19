@@ -18,12 +18,15 @@ export function addNewItemAction(newItem: CoffeeType, qtd: number) {
   }
 }
 
-export function changeQtdAction(coffeeId: number, newQtd: number) {
+export function changeQtdAction(
+  coffeeId: number,
+  type: 'increase' | 'decrease',
+) {
   return {
     type: ActionTypes.CHANGE_QTD,
     payload: {
       coffeeId,
-      newQtd,
+      type,
     },
   }
 }

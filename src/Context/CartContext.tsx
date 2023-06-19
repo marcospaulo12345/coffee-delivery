@@ -13,7 +13,7 @@ interface CartContextType {
   items: ItemsType[]
   addNewItem: (newItem: CoffeeType, qtd: number) => void
   removeItem: (idCoffee: number) => void
-  changeQtd: (coffeeId: number, newQtd: number) => void
+  changeQtd: (coffeeId: number, type: 'increase' | 'decrease') => void
   confirmOrder: (orderData: NewCheckoutFormData) => void
 }
 
@@ -54,8 +54,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(addNewItemAction(newItem, qtd))
   }
 
-  function changeQtd(coffeeId: number, newQtd: number) {
-    dispatch(changeQtdAction(coffeeId, newQtd))
+  function changeQtd(coffeeId: number, type: 'increase' | 'decrease') {
+    dispatch(changeQtdAction(coffeeId, type))
   }
 
   function removeItem(idCoffee: number) {
