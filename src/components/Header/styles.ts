@@ -28,6 +28,7 @@ export const Actions = styled.div`
   }
 
   a {
+    position: relative;
     background: ${(props) => props.theme['yellow-100']};
     color: ${(props) => props.theme['yellow-300']};
     display: flex;
@@ -36,5 +37,23 @@ export const Actions = styled.div`
     align-items: center;
     width: 2.375rem;
     height: 2.375rem;
+
+    span {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+
+      width: 1.25rem;
+      height: 1.25rem;
+      background: ${(props) => props.theme['yellow-300']};
+      border-radius: 999px;
+      color: ${(props) => props.theme.white};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
   }
 `

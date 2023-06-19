@@ -91,4 +91,9 @@ export const FormActions = styled.form`
     justify-content: center;
     cursor: pointer;
   }
+
+  button:hover {
+    background: ${(props) => props.theme['purple-200']};
+    transition: background-color 0.2s;
+  }
 `

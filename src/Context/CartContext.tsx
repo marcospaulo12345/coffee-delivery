@@ -3,7 +3,6 @@ import { CoffeeType } from '../utils/listCoffees'
 import { NewCheckoutFormData } from '../pages/Checkout'
 import { itemsCartReducer, ItemsType } from '../reducers/itemsCart/reducer'
 import {
-  ActionTypes,
   addNewItemAction,
   changeQtdAction,
   confirmOrderAction,

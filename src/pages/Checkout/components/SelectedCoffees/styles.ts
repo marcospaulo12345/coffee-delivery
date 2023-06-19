@@ -9,7 +9,7 @@ export const SelectedCoffeesContainer = styled.fieldset`
   background: ${(props) => props.theme['gray-200']};
   border-radius: 6px 44px;
 
-  & > button {
+  & > button[type='submit'] {
     height: 2.875rem;
     border: none;
     border-radius: 6px;
@@ -17,6 +17,11 @@ export const SelectedCoffeesContainer = styled.fieldset`
     color: ${(props) => props.theme['gray-100']};
     cursor: pointer;
     text-transform: uppercase;
+  }
+
+  & > button[type='submit']:hover {
+    background: ${(props) => props.theme['yellow-300']};
+    transition: background-color 0.2s;
   }
 `
 
@@ -72,6 +77,7 @@ export const SelectedCoffee = styled.div`
     color: ${(props) => props.theme['purple-200']};
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     border-radius: 6px;
     padding: 0.5rem;
@@ -81,6 +87,9 @@ export const SelectedCoffee = styled.div`
       text-transform: uppercase;
       font-size: 0.75rem;
     }
+  }
+  div > button:hover {
+    background: ${(props) => props.theme['gray-500']};
   }
 `
 

@@ -30,12 +30,18 @@ export const FieldsetPaymentContainer = styled.fieldset`
       background: ${(props) => props.theme['gray-400']};
       gap: 0.2rem;
       padding: 1rem;
+      cursor: pointer;
 
       span {
         font-size: 0.75rem;
         text-transform: uppercase;
         color: ${(props) => props.theme['gray-700']};
       }
+    }
+
+    label:hover {
+      background: ${(props) => props.theme['gray-500']};
+      transition: background-color 0.2s;
     }
   }
 `

@@ -85,7 +85,7 @@ export function SelectedCoffees() {
           <li>{formatterPriceWithSign.format(total)}</li>
         </ul>
       </InfoPayment>
-      <button>confirmar pedido</button>
+      <button type="submit">confirmar pedido</button>
     </SelectedCoffeesContainer>
   )
 }
