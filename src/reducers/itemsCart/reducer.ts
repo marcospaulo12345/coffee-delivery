@@ -15,13 +15,23 @@ interface ItemsState {
 
 export function itemsCartReducer(state: ItemsState, action: any) {
   switch (action.type) {
-    case ActionTypes.ADD_NEW_ITEM:
-      return produce(state, (draft) => {
-        draft.items.push({
-          product: { coffee: action.payload.newItem },
-          qtd: action.payload.qtd,
-        })
+    case ActionTypes.ADD_NEW_ITEM: {
+      const coffeeAlreadyExistInCart = state.items.findIndex((item) => {
+        return item.product.coffee.id === action.payload.newItem.id
       })
+      return produce(state, (draft) => {
+        if (coffeeAlreadyExistInCart < 0) {
+          draft.items.push({
+            product: { coffee: action.payload.newItem },
+            qtd: action.payload.qtd,
+          })
+        } else {
+          draft.items[coffeeAlreadyExistInCart].product.coffee =
+            action.payload.newItem
+          draft.items[coffeeAlreadyExistInCart].qtd = action.payload.qtd
+        }
+      })
+    }
     case ActionTypes.CHANGE_QTD: {
       const itemToChangeIndex = state.items.findIndex((item) => {
         return item.product.coffee.id === action.payload.coffeeId

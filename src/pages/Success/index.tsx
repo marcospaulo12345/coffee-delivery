@@ -26,9 +26,15 @@ export function Success() {
     if (!state) {
       navigate('/')
     }
-  }, [])
+  }, [navigate, state])
 
   if (!state) return <></>
+
+  const typeOfPayment = {
+    creditCard: 'Cartão de crédito',
+    debitCard: 'Cartão de débito',
+    money: 'Dinheiro',
+  } as const
 
   return (
     <SuccessContainer>
@@ -73,7 +79,7 @@ export function Success() {
             <CardContainer>
               <span>Pagamento na entrega</span>
               <span>
-                <strong>Cartão de Crédito</strong>
+                <strong>{typeOfPayment[state.payment]}</strong>
               </span>
             </CardContainer>
           </OrderInformationCard>

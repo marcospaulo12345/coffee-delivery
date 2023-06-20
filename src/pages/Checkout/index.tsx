@@ -30,7 +30,9 @@ const newCheckoutFormValidationSchema = zod.object({
     .string()
     .min(2, 'Informe a sigla do estado!')
     .max(2, 'Informe apenas as duas letras referente ao estado'),
-  payment: zod.string().min(1, 'Selecione a forma de pagamento!'),
+  payment: zod.enum(['creditCard', 'debitCard', 'money'], {
+    errorMap: (issue, ctx) => ({ message: 'Selecione a forma de pagamento' }),
+  }),
 })
 
 export type NewCheckoutFormData = zod.infer<
@@ -49,7 +51,6 @@ export function Checkout() {
       neighborhood: '',
       city: '',
       state_of_country: '',
-      payment: '',
     },
   })
 
