@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const SuccessContainer = styled.main`
-  padding: 9rem 8rem 2rem 8rem;
+  padding-top: 9rem !important;
 
   h1 {
     font-family: 'Baloo 2', sans-serif;
@@ -20,6 +20,14 @@ export const SuccessContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    img {
+      width: 100%;
+    }
+  }
 `
 
 export const OrderInformation = styled.section`
@@ -40,6 +48,11 @@ export const OrderInformation = styled.section`
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
   border-radius: 6px 36px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1rem;
+  }
 `
 
 export const OrderInformationCard = styled.div`

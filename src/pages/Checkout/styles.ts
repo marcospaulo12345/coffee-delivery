@@ -2,19 +2,25 @@ import { styled } from 'styled-components'
 
 export const CheckoutContainer = styled.main`
   /* padding-top: 6.5rem; */
-  padding: 9rem 8rem 2rem 8rem;
+  padding: 9rem 0;
 `
+
+export const CheckoutContent = styled.div``
 
 export const CheckoutFormContainer = styled.form`
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const CheckoutFormLeft = styled.fieldset`
-  width: 40rem;
-  display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 0.75rem;
 
   & > h1 {
     font-family: 'Baloo 2', sans-serif;
@@ -25,8 +31,8 @@ export const CheckoutFormLeft = styled.fieldset`
 `
 
 export const CheckoutFormRight = styled.fieldset`
-  width: 26rem;
-  display: flex;
+  flex: 1;
+  max-width: 28rem;
   flex-direction: column;
   gap: 0.75rem;
 
@@ -35,6 +41,10 @@ export const CheckoutFormRight = styled.fieldset`
     font-size: 1.125rem;
     margin-bottom: 1rem;
     color: ${(props) => props.theme['gray-800']};
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
   }
 `
 

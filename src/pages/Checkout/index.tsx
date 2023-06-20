@@ -2,6 +2,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   CheckoutContainer,
+  CheckoutContent,
   CheckoutFormContainer,
   CheckoutFormLeft,
   CheckoutFormRight,
@@ -68,33 +69,35 @@ export function Checkout() {
 
   return (
     <CheckoutContainer>
-      {items.length !== 0 ? (
-        <CheckoutFormContainer onSubmit={handleSubmit(handlePlaceOrder)}>
-          <FormProvider {...newCheckoutForm}>
-            <CheckoutFormLeft>
-              <h1>Complete seu pedido</h1>
-              <FieldsetsAddress />
+      <CheckoutContent className="container">
+        {items.length !== 0 ? (
+          <CheckoutFormContainer onSubmit={handleSubmit(handlePlaceOrder)}>
+            <FormProvider {...newCheckoutForm}>
+              <CheckoutFormLeft>
+                <h1>Complete seu pedido</h1>
+                <FieldsetsAddress />
 
-              <FieldsetPayment />
-            </CheckoutFormLeft>
+                <FieldsetPayment />
+              </CheckoutFormLeft>
 
-            <CheckoutFormRight>
-              <h1>Cafés selecionados</h1>
+              <CheckoutFormRight>
+                <h1>Cafés selecionados</h1>
 
-              <SelectedCoffees />
-            </CheckoutFormRight>
-          </FormProvider>
-        </CheckoutFormContainer>
-      ) : (
-        <EmptyItems>
-          <h1>☹ Carrinho de compras vazio!</h1>
-          <p>
-            Lembre-se: cada café adicionado é uma oportunidade de experimentar
-            algo novo e delicioso. Vamos começar? Adicione um café ao seu
-            carrinho agora mesmo!
-          </p>
-        </EmptyItems>
-      )}
+                <SelectedCoffees />
+              </CheckoutFormRight>
+            </FormProvider>
+          </CheckoutFormContainer>
+        ) : (
+          <EmptyItems>
+            <h1>☹ Carrinho de compras vazio!</h1>
+            <p>
+              Lembre-se: cada café adicionado é uma oportunidade de experimentar
+              algo novo e delicioso. Vamos começar? Adicione um café ao seu
+              carrinho agora mesmo!
+            </p>
+          </EmptyItems>
+        )}
+      </CheckoutContent>
     </CheckoutContainer>
   )
 }

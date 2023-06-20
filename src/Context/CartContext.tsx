@@ -65,7 +65,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   function confirmOrder(orderData: NewCheckoutFormData) {
     console.log(orderData)
     console.log(items)
-    // setItems([])
+
     dispatch(confirmOrderAction(orderData))
   }
 

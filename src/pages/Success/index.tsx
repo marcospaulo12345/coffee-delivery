@@ -37,7 +37,7 @@ export function Success() {
   } as const
 
   return (
-    <SuccessContainer>
+    <SuccessContainer className="container">
       <h1>Uhu! Pedido confirmado</h1>
       <p>Agora é só aguardar que logo o café chegará até você</p>
 

@@ -12,17 +12,26 @@ export const HomeIntro = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
+  display: flex;
+  align-items: center;
+  height: 44rem;
 
+  @media (max-width: 768px) {
+    height: 100%;
+  }
+`
+
+export const HomeIntroContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 8rem 0 8rem;
   width: 100%;
-  height: 544px;
   margin-top: 6.5rem;
 
   @media (max-width: 768px) {
     padding: 0 2rem 0 2rem;
+    flex-direction: column-reverse;
   }
 `
 
@@ -30,7 +39,6 @@ export const HomeIntroLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 36.75rem;
 
   & > h1 {
     color: ${(props) => props.theme['gray-900']};
@@ -44,6 +52,12 @@ export const HomeIntroLeft = styled.div`
     font-size: 1.25rem;
     color: ${(props) => props.theme['gray-800']};
     line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    & > h1 {
+      font-size: 2rem;
+    }
   }
 `
 
@@ -87,12 +101,14 @@ export const Item = styled.div`
 
 export const HomeIntroRight = styled.div`
   @media (max-width: 768px) {
-    display: none;
+    img {
+      width: 100%;
+    }
   }
 `
 
 export const CoffeeList = styled.div`
-  margin-top: 1rem;
+  margin-top: 3rem;
   padding: 0 8rem 0 8rem;
   & > h1 {
     color: ${(props) => props.theme['gray-800']};

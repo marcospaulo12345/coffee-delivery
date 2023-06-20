@@ -10,6 +10,10 @@ export const SelectedCoffeesContainer = styled.fieldset`
   border-radius: 6px 44px;
 
   & > button[type='submit'] {
+    width: 100%;
+    max-width: 23rem;
+    margin-left: auto;
+    margin-right: auto;
     height: 2.875rem;
     border: none;
     border-radius: 6px;
@@ -23,17 +27,24 @@ export const SelectedCoffeesContainer = styled.fieldset`
     background: ${(props) => props.theme['yellow-300']};
     transition: background-color 0.2s;
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `
 
 export const ListSelectedCoffees = styled.fieldset`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 export const SelectedCoffee = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1.5rem 0;
   border-bottom: 1px solid ${(props) => props.theme['gray-400']};
+  max-width: 23rem;
 
   & > span {
     font-size: 1rem;
@@ -62,15 +73,6 @@ export const SelectedCoffee = styled.div`
     gap: 0.5rem;
   }
 
-  /* div > input {
-    width: 72px;
-    height: 32px;
-    border: 0;
-    border-radius: 6px;
-    background: ${(props) => props.theme['gray-400']};
-    padding: 0.5rem;
-  } */
-
   div > button {
     border: none;
     background: ${(props) => props.theme['gray-400']};
@@ -94,8 +96,12 @@ export const SelectedCoffee = styled.div`
 `
 
 export const InfoPayment = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  max-width: 23rem;
+  margin-left: auto;
+  margin-right: auto;
 
   ul:last-child {
     text-align: end;
