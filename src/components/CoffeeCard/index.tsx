@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useState, FormEvent } from 'react'
+import { useContext, useState, FormEvent } from 'react'
 import { ShoppingCart } from 'phosphor-react'
 import { FormActions, CoffeeCardContainer, Tags } from './styles'
 import { CoffeeType } from '../../utils/listCoffees'

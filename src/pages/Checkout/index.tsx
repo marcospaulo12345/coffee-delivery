@@ -32,7 +32,7 @@ const newCheckoutFormValidationSchema = zod.object({
     .min(2, 'Informe a sigla do estado!')
     .max(2, 'Informe apenas as duas letras referente ao estado'),
   payment: zod.enum(['creditCard', 'debitCard', 'money'], {
-    errorMap: (issue, ctx) => ({ message: 'Selecione a forma de pagamento' }),
+    errorMap: () => ({ message: 'Selecione a forma de pagamento' }),
   }),
 })
 
