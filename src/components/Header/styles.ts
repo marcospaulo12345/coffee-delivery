@@ -13,6 +13,10 @@ export const HeaderContent = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  a {
+    box-shadow: 0 0 0 0;
+  }
+
   @media (max-width: 768px) {
     padding: 2rem;
   }

@@ -32,14 +32,6 @@ export function CoffeeCardCart({ item }: CoffeeCardCartProps) {
       <div>
         <h3>{item.product.coffee.name}</h3>
         <div>
-          {/* <input
-                    type="number"
-                    placeholder="1"
-                    value={item.qtd}
-                    onChange={(event) =>
-                      handleChangeQtd(item.product.coffee.id, event)
-                    }
-                  /> */}
           <InputQuantity
             handleIncrease={handleIncrease}
             handleDecrease={handleDecrease}

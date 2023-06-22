@@ -93,6 +93,16 @@ export const SelectedCoffee = styled.div`
   div > button:hover {
     background: ${(props) => props.theme['gray-500']};
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    div > h3 {
+      text-align: center;
+    }
+  }
 `
 
 export const InfoPayment = styled.div`

@@ -91,6 +91,7 @@ export const FormActions = styled.form`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 0 0 0 0;
   }
 
   button:hover {

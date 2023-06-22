@@ -25,12 +25,11 @@ export const HomeIntroContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8rem 0 8rem;
   width: 100%;
-  margin-top: 6.5rem;
+  margin-top: 0rem;
 
   @media (max-width: 768px) {
-    padding: 0 2rem 0 2rem;
+    margin-top: 6.5rem;
     flex-direction: column-reverse;
   }
 `
@@ -108,8 +107,6 @@ export const HomeIntroRight = styled.div`
 `
 
 export const CoffeeList = styled.div`
-  margin-top: 3rem;
-  padding: 0 8rem 0 8rem;
   & > h1 {
     color: ${(props) => props.theme['gray-800']};
     font-family: 'Baloo 2', sans-serif;
@@ -126,6 +123,7 @@ export const CoffeeList = styled.div`
   }
 
   @media (max-width: 768px) {
+    margin-top: 3rem;
     padding: 0 2rem 0 2rem;
   }
 `
